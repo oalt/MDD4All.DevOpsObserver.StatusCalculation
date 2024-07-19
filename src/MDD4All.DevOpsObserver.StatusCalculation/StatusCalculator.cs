@@ -44,15 +44,20 @@ namespace MDD4All.DevOpsObserver.StatusCalculation
                 }
             }
 
+            //if(result == DevOpsStatus.Unknown)
+            //{
+            //    result = DevOpsStatus.Success;
+            //}
+
             return result;
         }
 
         public DevOpsStatus CalculateDisplayStatus(DevOpsStatusInformation statusInformation)
         {
-            DevOpsStatus result = statusInformation.Status;
+            DevOpsStatus result = statusInformation.StatusValue;
 
             // if failed builds are younger than 7 days, return status = Warning
-            if(statusInformation.Status == DevOpsStatus.Error || statusInformation.Status == DevOpsStatus.Fail)
+            if(statusInformation.StatusValue == DevOpsStatus.Error || statusInformation.StatusValue == DevOpsStatus.Fail)
             {
                 if(!IsFailedSinceSevenDays(statusInformation))
                 {
